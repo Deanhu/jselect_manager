@@ -15,7 +15,7 @@
         <ul class="nav nav-pills pull-right" role="tablist">
             <li role="presentation" class="active"><a href="index.php">首页</a></li>
         </ul>
-        <h3 class="text-muted">Jselet企业购员工注册</h3>
+        <h3 class="text-muted">Jselect企业购员工注册</h3>
     </div>
 
     {if $modify_status==1}
@@ -33,7 +33,7 @@
 
     <div class="jumbotron">
         <div class="text-left">
-            <h3>欢迎使用Jselet企业购员工注册系统!</h3>
+            <h3>欢迎使用Jselect企业购员工注册系统!</h3>
             <br/>
             <p>您绑定的资料:</p>
             <p>淘宝账号:<strong>{$account}</strong></p>
