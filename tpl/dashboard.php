@@ -15,7 +15,7 @@
         <ul class="nav nav-pills pull-right" role="tablist">
             <li role="presentation" class="active"><a href="index.php">首页</a></li>
         </ul>
-        <h3 class="text-muted">Jselect企业购员工注册</h3>
+        <h3 class="text-muted">{$srcName}企业购员工注册</h3>
     </div>
 
     {if $modify_status==1}

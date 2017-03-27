@@ -34,12 +34,26 @@ class page
         $this->smarty->left_delimiter = '{';
         $this->smarty->right_delimiter = '}';
 
-        if(file_exists(ROOT.'/src.json')){
-            $this->src_array = json_decode(file_get_contents(ROOT.'/src.json'),true);
-        }else{
-            $this->src_array = json_decode('{"icbc":{"name":"\u4e2d\u56fd\u5de5\u5546\u94f6\u884c","email":"@icbc.com","url":"www.icbc.com"},"hsbc":{"name":"\u6c47\u4e30\u94f6\u884c","email":"@hsbc.com","url":"www.hsbc.com"}}',true);
+        if (file_exists(ROOT . '/src.json')) {
+            $this->src_array = json_decode(file_get_contents(ROOT . '/src.json'), true);
+        } else {
+            $this->src_array = json_decode('{"icbc":{"name":"\u4e2d\u56fd\u5de5\u5546\u94f6\u884c","email":"@icbc.com","url":"www.icbc.com"},"hsbc":{"name":"\u6c47\u4e30\u94f6\u884c","email":"@hsbc.com","url":"www.hsbc.com"}}', true);
         }
 
+        // 统一获得SrcName
+        $this->__getSrcName();
+
+    }
+
+    protected function __getSrcName()
+    {
+        $src = (isset($this->req['src']) && $this->req['src'] != '') ? $this->req['src'] : 'jebsen';
+        $srcName = 'Jselect';
+        if($src!='jebsen' && isset($this->src_array[$src])){
+            $src_info = $this->src_array[$src];
+            $srcName = $src_info['name'];
+        }
+        $this->smarty->assign('sysName', $srcName);
     }
 
 }
