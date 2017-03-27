@@ -53,7 +53,7 @@ class page
             $src_info = $this->src_array[$src];
             $srcName = $src_info['name'];
         }
-        $this->smarty->assign('sysName', $srcName);
+        $this->smarty->assign('srcName', $srcName);
     }
 
 }
