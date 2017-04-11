@@ -12,7 +12,13 @@
         $("#select01").change(function () {
             var select_src = $("#select01").val();
             console.log(select_src);
-            location.href = 'index.php?do=user.showBySrc&src='+select_src;
+            location.href = 'index.php?do=user.showBySrc&src=' + select_src;
+        });
+
+        $(".btn-info").click(function () {
+            var url = $(this).data("daylink");
+            location.href = url;
+            return;
         });
     });
 
@@ -29,16 +35,21 @@
     <div>
         {if $msg!=''}
         <div class="alert alert-success alert-dismissible" role="alert">
-            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+            <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span
+                    class="sr-only">Close</span></button>
             <strong>{$msg}</strong>
         </div>
         {/if}
-        <div class="dropdown">
-            <select class="form-control" style="width: 150px;" id="select01">
-                {foreach $src_list as $key => $val}
-                <option {if $src==$val}selected{/if}>{$val}</option>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">src={$src}</div>
+            <div class="panel-body">
+                {foreach $days as $day => $day_link}
+                <button style="margin-bottom: 5px;" data-dayLink="{$day_link}" type="button"
+                        class="btn btn-info btn-xs">{$day}
+                </button>
                 {/foreach}
-            </select>
+            </div>
         </div>
         <div style="margin: 20px 0 20px 0;">
             <textarea class="form-control" rows="3" readonly="true">{$s}</textarea>

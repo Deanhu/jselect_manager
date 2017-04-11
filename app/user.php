@@ -62,17 +62,17 @@ class user extends page
             G::tpl_msg($this->smarty, '淘宝账号不能为空', 'user_register.php');
             return;
         }
-        
+
         $src = (isset($this->req['src']) && $this->req['src'] != '') ? $this->req['src'] : 'jebsen';
-        if($src!='jebsen' && isset($this->src_array[$src])){
+        if ($src != 'jebsen' && isset($this->src_array[$src])) {
             $src_info = $this->src_array[$src];
             $email_suffix = $src_info['email'];
 
-            if(strpos($email,$email_suffix)===false){
+            if (strpos($email, $email_suffix) === false) {
                 G::tpl_msg($this->smarty, '非法邮箱,请检查注册邮箱后缀', 'user_register.php', $src);
                 return;
             }
-        }else{
+        } else {
             $src = 'jebsen';
         }
 
@@ -104,28 +104,39 @@ class user extends page
         $this->smarty->display('send_email.php');
     }
 
-    public function showBySrc(){
+    public function showBySrc()
+    {
 
-        $src = isset($this->req['src'])?$this->req['src']:'jebsen';
+        $src = isset($this->req['src']) ? $this->req['src'] : 'jebsen';
+        $day = isset($this->req['day']) ? $this->req['day'] : '';
 
-        $sql = 'select * from user where src = '.$this->pdo_db->quote($src);
+        $sql = 'select * from user where src = ' . $this->pdo_db->quote($src);
+        if ($day != '') $sql .= ' and left(create_time,10)=' . $this->pdo_db->quote($day);
         $rows = $this->pdo_db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
         $s = '';
-        foreach ($rows as $row){
-            $s .= ','.$row['tb_account'];
+        foreach ($rows as $row) {
+            $s .= $row['tb_account'] . "\n";
         }
-        $s = substr($s,1);
+//        $s = substr($s,1);
 
-        $msg = $s==''?'暂无该分类记录':'';
-        
+        $msg = $s == '' ? '暂无该分类记录' : '';
+
         $src_list = array_keys($this->src_array);
         array_unshift($src_list, 'jebsen');
-        
-        $this->smarty->assign('s',$s);
-        $this->smarty->assign('src',$src);
-        $this->smarty->assign('src_list',$src_list);
-        $this->smarty->assign('msg',$msg);
+
+        $days = array();
+        for ($i = 9; $i >= 0; $i--) {
+            $day = date('Y-m-d', strtotime('-' . $i . ' day'));
+            $url = 'index.php?do=user.showBySrc&src=' . $src . '&day=' . $day;
+            $days[$day] = $url;
+        }
+
+        $this->smarty->assign('s', $s);
+        $this->smarty->assign('days', $days);
+        $this->smarty->assign('src', $src);
+        $this->smarty->assign('src_list', $src_list);
+        $this->smarty->assign('msg', $msg);
         $this->smarty->display('tb_account.php');
     }
 }

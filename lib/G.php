@@ -84,6 +84,8 @@ class G
                     <body>   
                         <p>请您点击以下链接,以便完成系统账号激活操作!</p>
                         <p><a href='$url' target='_blank'>点击激活</a></p>
+                        <p><a href='https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181'>https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181</a></p>
+                        <p><img src='http://stk.evand.cn/login_t/reg/etc/img/qr_code.png'></p>
                     </body>   
                     </html>";
 
