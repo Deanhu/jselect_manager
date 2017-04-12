@@ -52,7 +52,7 @@
             </div>
         </div>
         <div style="margin: 20px 0 20px 0;">
-            <textarea class="form-control" rows="3" readonly="true">{$s}</textarea>
+            <textarea class="form-control" rows="15" readonly="true">{$s}</textarea>
         </div>
     </div>
 

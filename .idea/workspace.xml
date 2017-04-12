@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6cfd4c09-48a3-4ed2-b8d3-73bfb99f0596" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/user.php" afterPath="$PROJECT_DIR$/app/user.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/tpl/tb_account.php" afterPath="$PROJECT_DIR$/tpl/tb_account.php" />
     </list>
     <ignored path="jselect_manager.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -34,11 +34,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tb_account.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tb_account.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/tpl/tb_account.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="675">
-              <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
+            <state relative-caret-position="398">
+              <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
               <folding>
                 <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
                 <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
@@ -59,7 +59,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="user.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="user.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/user.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="120">
@@ -154,10 +154,10 @@
         <option value="$PROJECT_DIR$/tpl/user_modify.php" />
         <option value="$PROJECT_DIR$/tpl/user_register.php" />
         <option value="$PROJECT_DIR$/app/page.php" />
-        <option value="$PROJECT_DIR$/tpl/tb_account.php" />
         <option value="$PROJECT_DIR$/lib/G.php" />
         <option value="$PROJECT_DIR$/tpl/send_email.php" />
         <option value="$PROJECT_DIR$/app/user.php" />
+        <option value="$PROJECT_DIR$/tpl/tb_account.php" />
       </list>
     </option>
   </component>
@@ -327,12 +327,12 @@
       <workItem from="1489486624220" duration="1156000" />
       <workItem from="1490583709560" duration="2901000" />
       <workItem from="1491450716717" duration="55000" />
-      <workItem from="1491910242570" duration="6011000" />
+      <workItem from="1491910242570" duration="6324000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="12005000" />
+    <option name="totallyTimeSpent" value="12318000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1440" height="835" extended-state="6" />
@@ -644,17 +644,6 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/tpl/tb_account.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="45" column="36" selection-start-line="45" selection-start-column="36" selection-end-line="45" selection-end-column="36" />
-          <folding>
-            <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/email.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="391">
@@ -705,6 +694,17 @@
             <marker date="1491982245000" expanded="true" signature="3125:3269" placeholder="insert into user... " />
             <marker date="1491982245000" expanded="true" signature="3125:3310" placeholder="insert into user... " />
             <marker date="1491982245000" expanded="true" signature="3914:3945" placeholder="select * fro... user" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/tpl/tb_account.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="398">
+          <caret line="54" column="51" selection-start-line="54" selection-start-column="51" selection-end-line="54" selection-end-column="51" />
+          <folding>
+            <element signature="n#style#0;n#button#0;n#div#1;n#div#1;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#2;n#div#1;n#div#0;n#body#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
