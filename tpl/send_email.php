@@ -67,6 +67,8 @@
                 <button type="button" id="resend" class="btn btn-default">重发激活邮件</button>
                 <button type="button" id="done" class="btn btn-primary">已完成激活</button>
             </div>
+            <p><a href='https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181'>https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181</a></p>
+            <p><img src='http://jselect.online/login_t/reg/etc/img/qr_code.png'></p>
         </div>
     </div>
 
