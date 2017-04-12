@@ -90,7 +90,7 @@ class user extends page
             return;
         }
 
-        $sql = "insert into user (`email`,`tb_account`,`src`,``create_time`) values (" . $this->pdo_db->quote($email) . "," . $this->pdo_db->quote($account) . "," . $this->pdo_db->quote($src) . ",NOW())";
+        $sql = "insert into user (`email`,`tb_account`,`src`,`create_time`) values (" . $this->pdo_db->quote($email) . "," . $this->pdo_db->quote($account) . "," . $this->pdo_db->quote($src) . ",NOW())";
         $n = $this->pdo_db->exec($sql);
 
         $key = G::authcode($email, 'ENCODE', EMAIL_KEY, 0);
