@@ -125,9 +125,18 @@ class user extends page
         $src_list = array_keys($this->src_array);
         array_unshift($src_list, 'jebsen');
 
+        $day_in_db_sql = 'select left(create_time,10) as dd from user where src='.$this->pdo_db->quote($src).' group by dd order by dd desc limit 10';
+        $days_in_db = $this->pdo_db->query($day_in_db_sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        $days_in_db_array = array();
+        foreach ($days_in_db as $k => $row){
+            $days_in_db_array[$k] = $row['dd'];
+        }
+
         $days = array();
         for ($i = 9; $i >= 0; $i--) {
             $day = date('Y-m-d', strtotime('-' . $i . ' day'));
+            if(!in_array($day,$days_in_db_array))continue;
             $url = 'index.php?do=user.showBySrc&src=' . $src . '&day=' . $day;
             $days[$day] = $url;
         }
