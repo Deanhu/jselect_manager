@@ -27,6 +27,8 @@ class login extends page
             return;
         }
 
+        $email = strtolower($email);
+
         $sql = "select * from user where email=" . $this->pdo_db->quote($email) . " limit 1";
         $user_row = $this->pdo_db->query($sql)->fetch(PDO::FETCH_ASSOC);
         if (!isset($user_row['email'])) {

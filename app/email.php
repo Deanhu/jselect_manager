@@ -16,7 +16,7 @@ class email extends page
             echo json_encode(array('status' => 0, 'msg' => '邮箱不能为空'));
             exit;
         }
-
+        $email = strtolower($email);
         
         $sql = "select * from user where email=" . $this->pdo_db->quote($email) . " limit 1";
         $user_row = $this->pdo_db->query($sql)->fetch(PDO::FETCH_ASSOC);

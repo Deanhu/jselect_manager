@@ -33,6 +33,8 @@ class user extends page
             return;
         }
 
+        $email = strtolower($email);
+
         $sql = "select * from user where email=" . $this->pdo_db->quote($email) . " limit 1";
         $user_row = $this->pdo_db->query($sql)->fetch(PDO::FETCH_ASSOC);
         if (!isset($user_row['email'])) {
@@ -56,6 +58,8 @@ class user extends page
             G::tpl_msg($this->smarty, '邮箱不能为空', 'user_register.php');
             return;
         }
+
+        $email = strtolower($email);
 
         $account = isset($this->req['account']) ? $this->req['account'] : '';
         if (empty($account)) {

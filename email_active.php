@@ -22,6 +22,8 @@ if (!preg_match($pattern, $check_email)) die('不合法的URL');
 list($mysql_host, $mysql_port) = explode(':', MYSQL_HOST);
 $pdo_db = new PDO("mysql:host=" . $mysql_host . ";dbname=" . MYSQL_DBNAME, MYSQL_USERNAME, MYSQL_PWD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
 
+$check_email = strtolower($check_email);
+
 $sql = "select * from user where email=" . $pdo_db->quote($check_email) . " limit 1";
 $user_row = $pdo_db->query($sql)->fetch(PDO::FETCH_ASSOC);
 if (!isset($user_row['email'])) die('Are you sure?');
