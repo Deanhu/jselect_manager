@@ -8,8 +8,9 @@
 
 // 引入文件
 require_once dirname(__File__).'/etc/define.php';
-require_once dirname(__File__).'/lib/PHPMailer/class.phpmailer.php';
-require_once dirname(__File__).'/lib/PHPMailer/class.smtp.php';
+//require_once dirname(__File__).'/lib/PHPMailer/class.phpmailer.php';
+//require_once dirname(__File__).'/lib/PHPMailer/class.smtp.php';
+require_once dirname(__File__).'/lib/PHPMailer/PHPMailerAutoload.php';
 require_once dirname(__File__).'/lib/G.php';
 require_once dirname(__File__).'/lib/Smarty.class.php';
 require_once dirname(__File__).'/app/page.php';

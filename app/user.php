@@ -100,7 +100,10 @@ class user extends page
         $key = G::authcode($email, 'ENCODE', EMAIL_KEY, 0);
         $url = DOMAIN . 'email_active.php?abc=' . urlencode($key);
 
-        G::sendEmail($email, $url);
+//        G::sendEmail($email, $url);
+        // 加入邮件待发池
+        $insert_todo_sql = "insert into  todo (`email`,`url`,`tb_account`,`create_time`) values (" . $this->pdo_db->quote($email) . "," . $this->pdo_db->quote($url) . "," . $this->pdo_db->quote($account) . ",NOW())";
+        $todo_n = $this->pdo_db->exec($insert_todo_sql);
 
         $this->smarty->assign('status', 1);
         $this->smarty->assign('account', $account);
@@ -129,18 +132,18 @@ class user extends page
         $src_list = array_keys($this->src_array);
         array_unshift($src_list, 'jebsen');
 
-        $day_in_db_sql = 'select left(create_time,10) as dd from user where src='.$this->pdo_db->quote($src).' group by dd order by dd desc limit 10';
+        $day_in_db_sql = 'select left(create_time,10) as dd from user where src=' . $this->pdo_db->quote($src) . ' group by dd order by dd desc limit 10';
         $days_in_db = $this->pdo_db->query($day_in_db_sql)->fetchAll(PDO::FETCH_ASSOC);
 
         $days_in_db_array = array();
-        foreach ($days_in_db as $k => $row){
+        foreach ($days_in_db as $k => $row) {
             $days_in_db_array[$k] = $row['dd'];
         }
 
         $days = array();
         for ($i = 9; $i >= 0; $i--) {
             $day = date('Y-m-d', strtotime('-' . $i . ' day'));
-            if(!in_array($day,$days_in_db_array))continue;
+            if (!in_array($day, $days_in_db_array)) continue;
             $url = 'index.php?do=user.showBySrc&src=' . $src . '&day=' . $day;
             $days[$day] = $url;
         }
