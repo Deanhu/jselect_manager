@@ -72,7 +72,7 @@ if(1){
     $tb_account = $todo_row['tb_account'];
 
     $src_type = 1;
-    $user_row = $pdo_db->query("select * from user where email = $email limit 1")->fetch(PDO::FETCH_ASSOC)l
+    $user_row = $pdo_db->query("select * from user where email = $email limit 1")->fetch(PDO::FETCH_ASSOC);
     if($user_row['src']=='jebsen_new'){
         $src_type = 2;
     }

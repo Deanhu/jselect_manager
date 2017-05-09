@@ -106,6 +106,17 @@ class user extends page
         $insert_todo_sql = "insert into  todo (`email`,`url`,`tb_account`,`create_time`) values (" . $this->pdo_db->quote($email) . "," . $this->pdo_db->quote($url) . "," . $this->pdo_db->quote($account) . ",NOW())";
         $todo_n = $this->pdo_db->exec($insert_todo_sql);
 
+        if($src == 'jebsen_new'){
+            $content_url = "https://jebsen.tmall.com/category.htm?spm=a1z10.5-b-s.w4011-16314359632.1.7pO7uQ&keyword=dyson";
+            $content_qr_code = "http://jselect.online/login_t/reg/etc/img/qr_code_jebsen_new.png";
+        }else{
+            $content_url = "https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181";
+            $content_qr_code = "http://jselect.online/login_t/reg/etc/img/qr_code.png";
+        }
+
+        
+        $this->smarty->assign('content_url', $content_url);
+        $this->smarty->assign('content_qr_code', $content_qr_code);
         $this->smarty->assign('status', 1);
         $this->smarty->assign('account', $account);
         $this->smarty->assign('email', $email);
