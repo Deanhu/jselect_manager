@@ -1,1 +1,17 @@
-{"icbc":{"name":"\u4e2d\u56fd\u5de5\u5546\u94f6\u884c","email":"@icbc.com","url":"www.icbc.com"},"hsbc":{"name":"\u6c47\u4e30\u94f6\u884c","email":"@hsbc.com","url":"www.hsbc.com"}}
+{
+  "icbc": {
+    "name": "\u4e2d\u56fd\u5de5\u5546\u94f6\u884c",
+    "email": "@icbc.com",
+    "url": "www.icbc.com"
+  },
+  "hsbc": {
+    "name": "\u6c47\u4e30\u94f6\u884c",
+    "email": "@hsbc.com",
+    "url": "www.hsbc.com"
+  },
+  "jebsen_new":{
+    "name": "jebsen_new",
+    "email": "@",
+    "url": "http://jebsen.tmall.com"
+  }
+}

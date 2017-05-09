@@ -72,7 +72,8 @@ class user extends page
             $src_info = $this->src_array[$src];
             $email_suffix = $src_info['email'];
 
-            if (strpos($email, $email_suffix) === false) {
+            // jebsen_new 不检查邮箱后缀
+            if ($src!='jebsen_new' && strpos($email, $email_suffix) === false) {
                 G::tpl_msg($this->smarty, '非法邮箱,请检查注册邮箱后缀', 'user_register.php', $src);
                 return;
             }

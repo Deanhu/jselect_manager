@@ -70,7 +70,7 @@ class G
     }
     */
 
-    public static function sendEmail($email, $url, $title_suffix='')
+    public static function sendEmail($email, $url, $title_suffix='', $src_type=1)
     {
 //        $send_pwd = "jselect!23";
 //        $send_email = "jselect@qq.com";
@@ -94,6 +94,14 @@ class G
 //        $send_port = 465;
         $send_port = 587;
 
+        if($src_type==2){
+            $content_url = "https://jebsen.tmall.com/category.htm?spm=a1z10.5-b-s.w4011-16314359632.1.7pO7uQ&keyword=dyson";
+            $content_qr_code = "http://jselect.online/login_t/reg/etc/img/qr_code_jebsen_new.png";
+        }else{
+            $content_url = "https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181";
+            $content_qr_code = "http://jselect.online/login_t/reg/etc/img/qr_code.png";
+        }
+
         $body = "<html>
                     <head>   
                     <meta http-equiv=\"Content-Language\" content=\"zh-cn\">   
@@ -102,8 +110,8 @@ class G
                     <body>   
                         <p>请您点击以下链接,以便完成系统账号激活操作!</p>
                         <p><a href='$url' target='_blank'>点击激活</a></p><br/>
-                        <p><a href='https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181'>https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181</a></p>
-                        <p><img src='http://jselect.online/login_t/reg/etc/img/qr_code.png'></p>
+                        <p><a href='$content_url'>$content_url</a></p>
+                        <p><img src='$content_qr_code'></p>
                     </body>   
                     </html>";
 

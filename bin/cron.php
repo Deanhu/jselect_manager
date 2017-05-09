@@ -71,7 +71,13 @@ if(1){
     $url = $todo_row['url'];
     $tb_account = $todo_row['tb_account'];
 
-    $status = G::sendEmail($email, $url, $tb_account);
+    $src_type = 1;
+    $user_row = $pdo_db->query("select * from user where email = $email limit 1")->fetch(PDO::FETCH_ASSOC)l
+    if($user_row['src']=='jebsen_new'){
+        $src_type = 2;
+    }
+
+    $status = G::sendEmail($email, $url, $tb_account, $src_type);
     if ($status) {
         write_log('邮件发送成功.Email:' . $email);
         $after_status = 1;
