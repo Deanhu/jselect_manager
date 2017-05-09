@@ -73,7 +73,7 @@ class user extends page
             $email_suffix = $src_info['email'];
 
             // jebsen_new 不检查邮箱后缀
-            if ($src!='jebsen_new' && strpos($email, $email_suffix) === false) {
+            if ($src != 'jebsen_new' && strpos($email, $email_suffix) === false) {
                 G::tpl_msg($this->smarty, '非法邮箱,请检查注册邮箱后缀', 'user_register.php', $src);
                 return;
             }
@@ -106,15 +106,15 @@ class user extends page
         $insert_todo_sql = "insert into  todo (`email`,`url`,`tb_account`,`create_time`) values (" . $this->pdo_db->quote($email) . "," . $this->pdo_db->quote($url) . "," . $this->pdo_db->quote($account) . ",NOW())";
         $todo_n = $this->pdo_db->exec($insert_todo_sql);
 
-        if($src == 'jebsen_new'){
+        if ($src == 'jebsen_new') {
             $content_url = "https://jebsen.tmall.com/category.htm?spm=a1z10.5-b-s.w4011-16314359632.1.7pO7uQ&keyword=dyson";
             $content_qr_code = "http://jselect.online/login_t/reg/etc/img/qr_code_jebsen_new.png";
-        }else{
+        } else {
             $content_url = "https://detail.tmall.com/item.htm?spm=a220z.1000880.0.0.Ub0RXh&id=542635015181";
             $content_qr_code = "http://jselect.online/login_t/reg/etc/img/qr_code.png";
         }
 
-        
+
         $this->smarty->assign('content_url', $content_url);
         $this->smarty->assign('content_qr_code', $content_qr_code);
         $this->smarty->assign('status', 1);
@@ -128,9 +128,15 @@ class user extends page
 
         $src = isset($this->req['src']) ? $this->req['src'] : 'jebsen';
         $day = isset($this->req['day']) ? $this->req['day'] : '';
+        $status = isset($this->req['status']) ? intval($this->req['status']) : 3;
 
-        $sql = 'select * from user where src = ' . $this->pdo_db->quote($src);
+        if ($src == 'jebsen') {
+            $sql = 'select * from user where (src = ' . $this->pdo_db->quote($src) . ' or src = \'jebsen_new\')';
+        } else {
+            $sql = 'select * from user where src = ' . $this->pdo_db->quote($src);
+        }
         if ($day != '') $sql .= ' and left(create_time,10)=' . $this->pdo_db->quote($day);
+        if ($status != 3) $sql .= ' and status=' . $this->pdo_db->quote($status);
         $rows = $this->pdo_db->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 
         $s = '';
@@ -144,7 +150,14 @@ class user extends page
         $src_list = array_keys($this->src_array);
         array_unshift($src_list, 'jebsen');
 
-        $day_in_db_sql = 'select left(create_time,10) as dd from user where src=' . $this->pdo_db->quote($src) . ' group by dd order by dd desc limit 10';
+        $status_sql = '';
+        if($status != 3)$status_sql = ' and status = '.$this->pdo_db->quote($status);
+        
+        if ($src == 'jebsen') {
+            $day_in_db_sql = 'select left(create_time,10) as dd from user where (src=' . $this->pdo_db->quote($src) . ' or src = \'jebsen_new\') $status_sql group by dd order by dd desc limit 10';
+        } else {
+            $day_in_db_sql = 'select left(create_time,10) as dd from user where src=' . $this->pdo_db->quote($src) . ' $status_sql group by dd order by dd desc limit 10';
+        }
         $days_in_db = $this->pdo_db->query($day_in_db_sql)->fetchAll(PDO::FETCH_ASSOC);
 
         $days_in_db_array = array();
@@ -162,6 +175,7 @@ class user extends page
 
         $this->smarty->assign('s', $s);
         $this->smarty->assign('days', $days);
+        $this->smarty->assign('status', $status);
         $this->smarty->assign('src', $src);
         $this->smarty->assign('src_list', $src_list);
         $this->smarty->assign('msg', $msg);

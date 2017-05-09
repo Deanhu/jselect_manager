@@ -39,7 +39,13 @@ if (isset($argv[1]) && $argv[1] == 'test') {
     $url = $todo_row['url'];
     $tb_account = $todo_row['tb_account'];
 
-    $status = G::sendEmail($email, $url, $tb_account);
+    $src_type = 1;
+    $user_row = $pdo_db->query("select * from user where email = '$email' limit 1")->fetch(PDO::FETCH_ASSOC);
+    if ($user_row['src'] == 'jebsen_new') {
+        $src_type = 2;
+    }
+
+    $status = G::sendEmail($email, $url, $tb_account, $src_type);
     if ($status) {
         write_log('邮件发送成功.Email:' . $email);
         $update_sql = "update todo set `status`=1 where email = " . $pdo_db->quote($email) . " limit 1";
@@ -53,7 +59,7 @@ if (isset($argv[1]) && $argv[1] == 'test') {
 
 /* 每3分钟 */
 //if ($minute % 3 == 1) {
-if(1){
+if (1) {
 
     list($mysql_host, $mysql_port) = explode(':', MYSQL_HOST);
     $pdo_db = new PDO("mysql:host=" . $mysql_host . ";dbname=" . MYSQL_DBNAME, MYSQL_USERNAME, MYSQL_PWD, array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES 'utf8'"));
@@ -70,10 +76,10 @@ if(1){
     $email = $todo_row['email'];
     $url = $todo_row['url'];
     $tb_account = $todo_row['tb_account'];
-
+    
     $src_type = 1;
-    $user_row = $pdo_db->query("select * from user where email = $email limit 1")->fetch(PDO::FETCH_ASSOC);
-    if($user_row['src']=='jebsen_new'){
+    $user_row = $pdo_db->query("select * from user where email = '$email' limit 1")->fetch(PDO::FETCH_ASSOC);
+    if ($user_row['src'] == 'jebsen_new') {
         $src_type = 2;
     }
 

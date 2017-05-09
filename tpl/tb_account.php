@@ -20,6 +20,26 @@
             location.href = url;
             return;
         });
+
+        $(".b-status").click(function (){
+            var status = $(this).data("status");
+            var src = getUrlParam('src');
+            var day = getUrlParam('day');
+            var url = '';
+            if (!day && typeof(day)!="undefined" && day!=0){
+                url = 'index.php?do=user.showBySrc&src=' + src+'&status='+status;
+            }else{
+                url = 'index.php?do=user.showBySrc&src=' + src+'&status='+status+'&day='+day;
+            }
+            location.href = url;
+            return;
+        });
+
+        function getUrlParam(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)"); //构造一个含有目标参数的正则表达式对象
+            var r = window.location.search.substr(1).match(reg);  //匹配目标参数
+            if (r != null) return unescape(r[2]); return null; //返回参数值
+        }
     });
 
 </script>
@@ -42,7 +62,14 @@
         {/if}
 
         <div class="panel panel-default">
-            <div class="panel-heading">src={$src}</div>
+            <div class="panel-heading">
+                <div>src={$src}</div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="b-status btn btn-default" {if $status == 3}disabled="disabled"{/if} data-status="3">全部</button>
+                    <button type="button" class="b-status btn btn-default" {if $status == 1}disabled="disabled"{/if} data-status="1">激活</button>
+                    <button type="button" class="b-status btn btn-default" {if $status == 0}disabled="disabled"{/if} data-status="0">未激活</button>
+                </div>
+            </div>
             <div class="panel-body">
                 {foreach $days as $day => $day_link}
                 <button style="margin-bottom: 5px;" data-dayLink="{$day_link}" type="button"
